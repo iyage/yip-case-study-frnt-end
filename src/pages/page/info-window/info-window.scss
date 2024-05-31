@@ -1,3 +1,4 @@
+@import "../../../responsive.scss";
 .info-window-container {
   padding: 10px 5px;
   table {
@@ -15,14 +16,24 @@
     gap: 5px;
     align-items: center;
     font-size: 14px;
+    @include sm {
+      font-size: 10px;
+    }
     font-weight: 700;
     .desp {
       font-size: 8px;
+      @include sm {
+        display: none;
+      }
     }
   }
 
   .info {
     font-size: 12px;
     font-weight: 500;
+    @include sm {
+      font-size: 10px;
+      font-weight: 300;
+    }
   }
 }
