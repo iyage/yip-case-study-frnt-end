@@ -29,7 +29,6 @@ function MapComp() {
   const [infoForm, setInfoForm] = useState(false);
   const [err, setErr] = useState(false);
   const [newLatlng, setSewLatlng] = useState({ lat: "", lng: "" });
-  const [sW, setSw] = useState(1024);
   const [zoom, setZoom] = useState(2);
   const [anchors, setAnchor] = useState([]);
   const [isLoading, setIsloading] = useState(false);
@@ -66,7 +65,6 @@ function MapComp() {
         lng: position.coords.longitude,
       });
     });
-    setSw(window.innerWidth);
   }, []);
   useEffect(() => {
     getPins()
@@ -81,7 +79,6 @@ function MapComp() {
     data.lng = newLatlng.lng;
     setIsloading(true);
     setErr(false);
-
     const service = new google.maps.DistanceMatrixService();
     const matrixOptions = {
       origins: [`${newLatlng.lat},${newLatlng.lng}`],
@@ -126,31 +123,29 @@ function MapComp() {
                   lat: parseFloat(newLatlng.lat),
                   lng: parseFloat(newLatlng.lng),
                 }}>
-                {sW >= 768 && (
-                  <InfoWindowF
-                    onCloseClick={handleCloseInfoForm}
-                    options={{
-                      disableAutoPan: true,
-                      pixelOffset: new google.maps.Size(0, 35),
-                    }}
-                    position={{
-                      lat: parseFloat(newLatlng.lat),
-                      lng: parseFloat(newLatlng.lng),
-                    }}>
-                    <>
-                      {err && (
-                        <p className="errMsg">
-                          Infomation not saved,Please try again!!
-                        </p>
-                      )}
+                <InfoWindowF
+                  onCloseClick={handleCloseInfoForm}
+                  options={{
+                    disableAutoPan: true,
+                    pixelOffset: new google.maps.Size(0, 35),
+                  }}
+                  position={{
+                    lat: parseFloat(newLatlng.lat),
+                    lng: parseFloat(newLatlng.lng),
+                  }}>
+                  <>
+                    {err && (
+                      <p className="errMsg">
+                        Infomation not saved,Please try again!!
+                      </p>
+                    )}
 
-                      <LgScreenInfoForm
-                        onSubmit={onSubmit}
-                        isLoading={isLoading}
-                      />
-                    </>
-                  </InfoWindowF>
-                )}
+                    <LgScreenInfoForm
+                      onSubmit={onSubmit}
+                      isLoading={isLoading}
+                    />
+                  </>
+                </InfoWindowF>
               </MarkerF>
             )}
 
