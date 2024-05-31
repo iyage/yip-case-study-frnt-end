@@ -1,0 +1,29 @@
+.side-bar {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999999999999999;
+  .side-wrapper {
+    position: relative;
+    background-color: rgba(248, 241, 241, 0.97);
+    width: 250px;
+    height: 100%;
+    .btn-container {
+      text-align: center;
+      position: absolute;
+      bottom: 20vh;
+      left: 50px;
+      button {
+        padding: 10px 45px;
+        border-radius: 7px;
+        border: none;
+        background-color: crimson;
+        color: white;
+        &:active {
+          transform: scale(0.97);
+        }
+      }
+    }
+  }
+}

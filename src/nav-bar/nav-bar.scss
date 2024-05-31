@@ -1,0 +1,20 @@
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 70px;
+  z-index: 999;
+  .wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: left;
+    padding: 10px 10px;
+    .menu {
+      font-size: 25px;
+      color: crimson;
+      cursor: pointer;
+    }
+  }
+}
