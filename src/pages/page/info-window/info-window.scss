@@ -1,0 +1,28 @@
+.info-window-container {
+  padding: 10px 5px;
+  table {
+    width: 100%;
+  }
+  table,
+  td {
+    border: none;
+  }
+  td {
+    padding: 3px 7px;
+  }
+  .info-icon {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    .desp {
+      font-size: 8px;
+    }
+  }
+
+  .info {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
