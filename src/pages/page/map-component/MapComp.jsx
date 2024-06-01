@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import LgScreenInfoForm from "../lg-screen-info-form/LgScreenInfoForm";
 import CustomInfoWindow from "../info-window/CustomInfoWindow";
-import { addPin, getPins } from "../../../utils/apis/api";
+import { createPin, listPins } from "../../../utils/apis/api";
 import "./map-component.scss";
 import { useNavigate } from "react-router-dom";
 const containerStyle = {
@@ -69,7 +69,7 @@ function MapComp() {
     });
   }, []);
   useEffect(() => {
-    getPins()
+    listPins()
       .then((resp) => {
         setLoc(resp.data);
       })
@@ -104,7 +104,7 @@ function MapComp() {
       data.travelTime = response?.rows[0]?.elements[0]?.duration?.text;
     });
     try {
-      const resp = await addPin(data);
+      const resp = await createPin(data);
       setLoc((prev) => [...prev, resp.data]);
       setIsloading(false);
       setInfoForm(false);
