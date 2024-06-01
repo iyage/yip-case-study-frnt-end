@@ -111,12 +111,12 @@ function MapComp() {
       setSewLatlng(null);
     } catch (error) {
       console.log(error);
-      setIsloading(false);
-      setErr(true);
-      if (err.response.status === 403 || err.response.status === 401) {
+      if (error.response.status === 403 || error.response.status === 401) {
         sessionStorage.clear();
         navigate("/");
       }
+      setIsloading(false);
+      setErr(true);
     }
   }
 
@@ -140,7 +140,7 @@ function MapComp() {
                   onCloseClick={handleCloseInfoForm}
                   options={{
                     disableAutoPan: true,
-                    pixelOffset: new google.maps.Size(0, 35),
+                    pixelOffset: new google.maps.Size(0, 40),
                   }}
                   position={{
                     lat: parseFloat(newLatlng.lat),
