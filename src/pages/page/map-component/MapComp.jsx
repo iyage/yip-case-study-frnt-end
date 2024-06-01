@@ -8,8 +8,9 @@ import {
 import { useEffect, useState } from "react";
 import LgScreenInfoForm from "../lg-screen-info-form/LgScreenInfoForm";
 import CustomInfoWindow from "../info-window/CustomInfoWindow";
-import { addPin, getPins } from "../../../utils/apis/api";
+import { createPin, listPins } from "../../../utils/apis/api";
 import "./map-component.scss";
+import { useNavigate } from "react-router-dom";
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -21,6 +22,7 @@ const dest = {
   lng: null,
 };
 function MapComp() {
+  const navigate = useNavigate();
   const [center, setCenter] = useState({
     lat: "",
     lng: "",
@@ -67,11 +69,18 @@ function MapComp() {
     });
   }, []);
   useEffect(() => {
-    getPins()
+    listPins()
       .then((resp) => {
         setLoc(resp.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 403 || err.response.status === 401) {
+          sessionStorage.clear();
+          navigate("/");
+        }
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function onSubmit(data) {
@@ -95,13 +104,17 @@ function MapComp() {
       data.travelTime = response?.rows[0]?.elements[0]?.duration?.text;
     });
     try {
-      const resp = await addPin(data);
+      const resp = await createPin(data);
       setLoc((prev) => [...prev, resp.data]);
       setIsloading(false);
       setInfoForm(false);
       setSewLatlng(null);
     } catch (error) {
       console.log(error);
+      if (error.response.status === 403 || error.response.status === 401) {
+        sessionStorage.clear();
+        navigate("/");
+      }
       setIsloading(false);
       setErr(true);
     }
@@ -127,7 +140,7 @@ function MapComp() {
                   onCloseClick={handleCloseInfoForm}
                   options={{
                     disableAutoPan: true,
-                    pixelOffset: new google.maps.Size(0, 35),
+                    pixelOffset: new google.maps.Size(0, 40),
                   }}
                   position={{
                     lat: parseFloat(newLatlng.lat),

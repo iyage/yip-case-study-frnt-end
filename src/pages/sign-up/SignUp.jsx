@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "./login.scss";
+import "./sign-up.scss";
 import { FaLock, FaRegEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { authenticate } from "../../utils/apis/api";
+import { createUser } from "../../utils/apis/api";
 import { ClipLoader } from "react-spinners";
-import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function SignUp() {
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsloading] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -27,12 +28,9 @@ function Login() {
   async function onsubmit(data) {
     setIsloading(true);
     try {
-      const resp = await authenticate(data);
-      sessionStorage.setItem("auth", true);
-      sessionStorage.setItem("user", JSON.stringify(resp.data.user));
-      sessionStorage.setItem("token", resp.data.accessToken);
-      setIsloading(false);
+      await createUser(data);
       setErrMsg("");
+      navigate("/");
     } catch (error) {
       setIsloading(false);
       console.log(error);
@@ -45,7 +43,7 @@ function Login() {
     }
   }
 
-  return !sessionStorage.getItem("auth") ? (
+  return (
     <div className="login-container">
       <div className="login-wrapper">
         <form onSubmit={handleSubmit(onsubmit)}>
@@ -94,15 +92,10 @@ function Login() {
               {isLoading ? <ClipLoader color="#fff" size={14} /> : "Login"}
             </button>
           </div>
-          <Link to={"/sign-up"} className="sign-up">
-            Sign-Up
-          </Link>
         </form>
       </div>
     </div>
-  ) : (
-    <Navigate to={"/page"} />
   );
 }
 
-export default Login;
+export default SignUp;
