@@ -6,11 +6,11 @@ import {
   InfoWindowF,
 } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
-import LgScreenInfoForm from "../lg-screen-info-form/LgScreenInfoForm";
-import CustomInfoWindow from "../info-window/CustomInfoWindow";
+import CustomInfoWindow from "../custom-info-window/CustomInfoWindow";
 import { createPin, listPins } from "../../../utils/apis/api";
 import "./map-component.scss";
 import { useNavigate } from "react-router-dom";
+import InfoFormComponent from "../info-form-component/InfoFormComponent";
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -124,6 +124,7 @@ function MapComp() {
           options={{
             draggableCursor: "pointer",
             backgroundColor: "rgb(138,180,248)",
+            fullscreenControl: false,
           }}
           mapContainerStyle={containerStyle}
           center={center}
@@ -153,7 +154,7 @@ function MapComp() {
                       </p>
                     )}
 
-                    <LgScreenInfoForm
+                    <InfoFormComponent
                       onSubmit={onSubmit}
                       isLoading={isLoading}
                     />
@@ -175,7 +176,8 @@ function MapComp() {
                     <InfoWindowF
                       onCloseClick={() => handleCloseInfoWin(item._id)}
                       options={{
-                        minWidth: "320px",
+                        minWidth: "90vw",
+                        maxWidth: "450px",
                       }}
                       position={{
                         lat: parseFloat(item.lat),
