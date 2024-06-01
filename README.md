@@ -6,5 +6,5 @@ This is a map app
 
 1.  Sign-up if not a register user by providing the following;
 
-- [] Email Address
-- [] Password
+- [*] Email Address
+- [*] Password
