@@ -4,7 +4,7 @@ This is a map app
 
 ### Application usage instructions
 
-1.  Sign-up if not a register user by providing the following;
+1.  Sign-up if not a register user, by providing the following;
 
     - &#9746; Email Address
     - &#9746; Password
