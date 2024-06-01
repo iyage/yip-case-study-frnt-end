@@ -31,7 +31,6 @@ function MapComp() {
   const [infoForm, setInfoForm] = useState(false);
   const [err, setErr] = useState(false);
   const [newLatlng, setSewLatlng] = useState({ lat: "", lng: "" });
-  const [zoom, setZoom] = useState(2);
   const [anchors, setAnchor] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const { isLoaded } = useJsApiLoader({
@@ -44,8 +43,6 @@ function MapComp() {
     latLng = JSON.parse(latLng);
     setSewLatlng({ lat: latLng.lat, lng: latLng.lng });
     setInfoForm(true);
-    setCenter({ lat: latLng.lat, lng: latLng.lng });
-    setZoom(7);
   }
   function handleCloseInfoWin(_id) {
     setAnchor((prev) => prev.filter((id) => id !== _id));
@@ -63,8 +60,8 @@ function MapComp() {
       dest.lat = position.coords.latitude;
       dest.lng = position.coords.longitude;
       setCenter({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lat: parseFloat(position.coords.latitude),
+        lng: parseFloat(position.coords.longitude),
       });
     });
   }, []);
@@ -124,11 +121,14 @@ function MapComp() {
     <>
       {isLoaded ? (
         <GoogleMap
-          options={{ draggableCursor: "pointer" }}
+          options={{
+            draggableCursor: "pointer",
+            backgroundColor: "rgb(138,180,248)",
+          }}
           mapContainerStyle={containerStyle}
           center={center}
           onClick={handleForm}
-          zoom={zoom}>
+          zoom={3}>
           <>
             {infoForm && (
               <MarkerF
@@ -139,10 +139,8 @@ function MapComp() {
                 <InfoWindowF
                   onCloseClick={handleCloseInfoForm}
                   options={{
-                    disableAutoPan: true,
-                    pixelOffset: new google.maps.Size(0, 40),
-                    minWidth: "300px",
-                    zIndex: 9999999,
+                    pixelOffset: new google.maps.Size(0, 20),
+                    minWidth: "90vw",
                   }}
                   position={{
                     lat: parseFloat(newLatlng.lat),
@@ -177,7 +175,7 @@ function MapComp() {
                     <InfoWindowF
                       onCloseClick={() => handleCloseInfoWin(item._id)}
                       options={{
-                        minWidth: "300px",
+                        minWidth: "320px",
                       }}
                       position={{
                         lat: parseFloat(item.lat),

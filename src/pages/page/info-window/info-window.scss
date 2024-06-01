@@ -16,13 +16,13 @@
     gap: 5px;
     align-items: center;
     font-size: 14px;
-    @include sm {
+    @include mobile {
       font-size: 10px;
     }
     font-weight: 700;
     .desp {
       font-size: 8px;
-      @include sm {
+      @include mobile {
         display: none;
       }
     }
@@ -31,7 +31,7 @@
   .info {
     font-size: 12px;
     font-weight: 500;
-    @include sm {
+    @include mobile {
       font-size: 10px;
       font-weight: 300;
     }

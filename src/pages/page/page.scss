@@ -5,13 +5,18 @@
   overflow-y: hidden;
   position: relative;
   .wrapper {
-    height: calc(95vh - 45px);
+    height: calc(95vh - 30px);
     width: 90vw;
     display: flex;
     margin: auto;
     margin-top: 33px;
-    @include sm {
-      height: calc(100vh - 45px);
+    @include mobile {
+      height: calc(100vh - 30px);
+      width: 100vw;
+      margin-top: 0;
+    }
+    @include tablet {
+      height: calc(100vh - 30px);
       width: 100vw;
       margin-top: 0;
     }
