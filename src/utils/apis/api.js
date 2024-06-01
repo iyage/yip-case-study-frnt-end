@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: BASEURL,
 });
 
-export const getPins = async () => {
+export const listPins = async () => {
   return await api.get("/pin", {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -13,13 +13,18 @@ export const getPins = async () => {
   });
 };
 
-export const addPin = async (data) => {
+export const createPin = async (data) => {
   return await api.post("/pin", data, {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   });
 };
+
+export const createUser = async (data) => {
+  return await api.post("/user", data);
+};
+
 export const authenticate = async (data) => {
   return await api.post("/login", data);
 };
