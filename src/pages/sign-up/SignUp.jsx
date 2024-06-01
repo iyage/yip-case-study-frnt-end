@@ -92,7 +92,6 @@ function SignUp() {
               {isLoading ? <ClipLoader color="#fff" size={14} /> : "Login"}
             </button>
           </div>
-          <p className="sign-up">Sign-Up</p>
         </form>
       </div>
     </div>
