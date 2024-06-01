@@ -122,7 +122,6 @@ function InfoFormComponent({ onSubmit, isLoading }) {
                 })}>
                 <option value="WALKING">Walk</option>
                 <option value="DRIVING">Car</option>
-                <option value="BICYCLING">Bicycle</option>
               </select>
             </div>
             {errors.mode?.type === "required" && <p>This field is required</p>}
