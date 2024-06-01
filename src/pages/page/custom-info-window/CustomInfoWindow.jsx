@@ -1,4 +1,4 @@
-import "./info-window.scss";
+import "./custom-info-window.scss";
 import {
   FaRegUser,
   FaEnvelopeSquare,

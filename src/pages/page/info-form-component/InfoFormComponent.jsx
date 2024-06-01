@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./lg-screen-info-form.scss";
+import "./info-form-component.scss";
 import { useForm } from "react-hook-form";
 import {
   FaRegUser,
@@ -8,7 +8,7 @@ import {
   FaPhoneAlt,
 } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
-function LgScreenInfoForm({ onSubmit, isLoading }) {
+function InfoFormComponent({ onSubmit, isLoading }) {
   const {
     register,
     handleSubmit,
@@ -138,4 +138,4 @@ function LgScreenInfoForm({ onSubmit, isLoading }) {
   );
 }
 
-export default LgScreenInfoForm;
+export default InfoFormComponent;
