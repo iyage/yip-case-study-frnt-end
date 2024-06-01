@@ -4,7 +4,7 @@ import { FaLock, FaRegEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { createUser } from "../../utils/apis/api";
 import { ClipLoader } from "react-spinners";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [errMsg, setErrMsg] = useState("");
@@ -43,7 +43,7 @@ function SignUp() {
     }
   }
 
-  return !sessionStorage.getItem("auth") ? (
+  return (
     <div className="login-container">
       <div className="login-wrapper">
         <form onSubmit={handleSubmit(onsubmit)}>
@@ -96,8 +96,6 @@ function SignUp() {
         </form>
       </div>
     </div>
-  ) : (
-    <Navigate to={"/page"} />
   );
 }
 
