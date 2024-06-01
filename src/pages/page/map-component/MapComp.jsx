@@ -141,6 +141,8 @@ function MapComp() {
                   options={{
                     disableAutoPan: true,
                     pixelOffset: new google.maps.Size(0, 40),
+                    minWidth: "300px",
+                    zIndex: 9999999,
                   }}
                   position={{
                     lat: parseFloat(newLatlng.lat),
@@ -174,6 +176,9 @@ function MapComp() {
                   {anchors.includes(item._id) && (
                     <InfoWindowF
                       onCloseClick={() => handleCloseInfoWin(item._id)}
+                      options={{
+                        minWidth: "300px",
+                      }}
                       position={{
                         lat: parseFloat(item.lat),
                         lng: parseFloat(item.lng),

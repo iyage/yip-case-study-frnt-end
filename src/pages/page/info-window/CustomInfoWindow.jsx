@@ -11,7 +11,9 @@ import {
 function CustomInfoWindow({ info }) {
   return (
     <>
-      <div className="info-window-container">
+      <div
+        className="info-window-container"
+        style={{ minWidth: "310px !important" }}>
         <table>
           <tbody>
             <tr>
