@@ -5,13 +5,13 @@
   overflow-y: hidden;
   position: relative;
   .wrapper {
-    height: calc(90vh - 70px);
+    height: calc(90vh - 45px);
     width: 90vw;
     display: flex;
     margin: auto;
     margin-top: 33px;
     @include sm {
-      height: calc(100vh - 70px);
+      height: calc(100vh - 45px);
       width: 100vw;
       margin-top: 0;
     }

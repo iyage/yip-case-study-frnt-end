@@ -4,7 +4,7 @@ import { FaAlignJustify } from "react-icons/fa6";
 function NavBar({ setHideSideBar }) {
   return (
     <nav>
-      <div className="wrapper">
+      <div>
         <FaAlignJustify className="menu" onClick={() => setHideSideBar(true)} />
       </div>
     </nav>
