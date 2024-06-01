@@ -4,7 +4,7 @@ import { FaLock, FaRegEnvelope } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { authenticate } from "../../utils/apis/api";
 import { ClipLoader } from "react-spinners";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function Login() {
   const [errMsg, setErrMsg] = useState("");
@@ -94,6 +94,9 @@ function Login() {
               {isLoading ? <ClipLoader color="#fff" size={14} /> : "Login"}
             </button>
           </div>
+          <Link to={"/sign-up"} className="sign-up">
+            Sign-Up
+          </Link>
         </form>
       </div>
     </div>
