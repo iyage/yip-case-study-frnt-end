@@ -11,6 +11,7 @@ import { createPin, listPins } from "../../../utils/apis/api";
 import "./map-component.scss";
 import { useNavigate } from "react-router-dom";
 import InfoFormComponent from "../info-form-component/InfoFormComponent";
+import { useCalDistance } from "../../../utils/hooks/calDistance";
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -22,6 +23,7 @@ const dest = {
   lng: null,
 };
 function MapComp() {
+  const distance = useCalDistance();
   const navigate = useNavigate();
   const [center, setCenter] = useState({
     lat: "",
@@ -85,21 +87,25 @@ function MapComp() {
     data.lng = newLatlng.lng;
     setIsloading(true);
     setErr(false);
-    const service = new google.maps.DistanceMatrixService();
-    const matrixOptions = {
-      origins: [`${newLatlng.lat},${newLatlng.lng}`],
-      destinations: [`${dest.lat},${dest.lng}`],
-      travelMode: data.mode,
-      unitSystem: google.maps.UnitSystem.METRIC,
-    };
-    await service.getDistanceMatrix(matrixOptions, (response, status) => {
-      if (status !== "OK") {
-        console.log(status);
-        return;
-      }
-      data.distance = response?.rows[0]?.elements[0]?.distance?.text;
-      data.travelTime = response?.rows[0]?.elements[0]?.duration?.text;
-    });
+
+    // const service = new google.maps.DistanceMatrixService();
+    // const matrixOptions = {
+    //   origins: [`${newLatlng.lat},${newLatlng.lng}`],
+    //   destinations: [`${dest.lat},${dest.lng}`],
+    //   travelMode: data.mode,
+    //   unitSystem: google.maps.UnitSystem.METRIC,
+    // };
+    // await service.getDistanceMatrix(matrixOptions, (response, status) => {
+    //   if (status !== "OK") {
+    //     console.log(status);
+    //     return;
+    //   }
+    //   data.distance = response?.rows[0]?.elements[0]?.distance?.text;
+    //   data.travelTime = response?.rows[0]?.elements[0]?.duration?.text;
+    // });
+
+    const travelDistance = distance(dest, newLatlng);
+    data.distance = travelDistance + "  Km";
     try {
       const resp = await createPin(data);
       setLoc((prev) => [...prev, resp.data]);

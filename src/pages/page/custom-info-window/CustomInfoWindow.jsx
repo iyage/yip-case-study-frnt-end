@@ -4,9 +4,7 @@ import {
   FaEnvelopeSquare,
   FaAddressBook,
   FaPhoneAlt,
-  FaStreetView,
   FaRoute,
-  FaRegClock,
 } from "react-icons/fa";
 function CustomInfoWindow({ info }) {
   return (
@@ -62,34 +60,12 @@ function CustomInfoWindow({ info }) {
               <td>
                 <span className="info-icon">
                   <span className="icon">
-                    <FaStreetView />
-                  </span>
-                  <span className="desp">Mode Of Travel</span>
-                </span>
-              </td>
-              <td className="info">{info.mode}</td>
-            </tr>
-            <tr>
-              <td>
-                <span className="info-icon">
-                  <span className="icon">
                     <FaRoute />
                   </span>
                   <span className="desp">Travel Distance</span>
                 </span>
               </td>
               <td className="info">{info.distance}</td>
-            </tr>
-            <tr>
-              <td>
-                <span className="info-icon">
-                  <span className="icon">
-                    <FaRegClock />
-                  </span>
-                  <span className="desp">Travel Time</span>
-                </span>
-              </td>
-              <td className="info">{info.travelTime}</td>
             </tr>
           </tbody>
         </table>
