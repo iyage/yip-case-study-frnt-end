@@ -1,8 +1,8 @@
+/**
+ * Reference The law of haversines
+ * Source https://en.wikipedia.org/wiki/Haversine_formula
+ */
 export function useCalDistance() {
-  /**
-   * Ref The law of haversines
-   * Source https://en.wikipedia.org/wiki/Haversine_formula
-   */
   /**
    *
    * @param {{lat:number,lng:number}} destination
@@ -21,7 +21,7 @@ export function useCalDistance() {
       Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(distLng / 2), 2);
     let c = 2 * Math.asin(Math.sqrt(a));
     // earth radius  6371
-    return Math.round(c * 6371, 2);
+    return Math.round(c * 6371);
   };
   return distance;
 }
