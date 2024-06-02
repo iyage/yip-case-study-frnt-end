@@ -15,7 +15,6 @@ This is a map app
 
     - Click the desire location on the map
     - Enter the requsite information
-    - Select the the desired mode of travel
-    - Click Enter
+    - Click Submit
 
       ### END !!!
