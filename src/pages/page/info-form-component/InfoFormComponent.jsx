@@ -112,20 +112,6 @@ function InfoFormComponent({ onSubmit, isLoading }) {
               <p>This field is required</p>
             )}
           </div>
-          <div className="form-input">
-            <div className="inputs">
-              <label htmlFor="mode">Mode of travel</label>
-              <select
-                name="mode"
-                {...register("mode", {
-                  required: true,
-                })}>
-                <option value="WALKING">Walk</option>
-                <option value="DRIVING">Car</option>
-              </select>
-            </div>
-            {errors.mode?.type === "required" && <p>This field is required</p>}
-          </div>
           <div className="btn-container">
             <button disabled={isLoading}>
               {isLoading ? <ClipLoader color="#fff" size={14} /> : "Submit"}
